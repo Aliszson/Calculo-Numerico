@@ -1,47 +1,66 @@
 import math
 
-# def f(x): # função própia para definicão do f(x)
-#     return(x**2 - x - 2)
+# Mapeamento de termos para funções
+def funcao(x, expressao):
+    termos = ['sen', 'cos', 'tg', 'log', 'exp', 'sqrt', 'e']
 
-def funcao(x, func):
-    return eval(func)
+    for termo in termos:
+        if termo in expressao:
+            if termo == 'sen':
+                expressao = expressao.replace(f'{termo}(', f'math.sin(')
+            elif termo == 'tg':
+                expressao = expressao.replace(f'{termo}(', f'math.tan(')
+            elif termo == 'e':
+                expressao = expressao.replace(f'{termo}', f'math.{termo}')
+            else:
+                expressao = expressao.replace(f'{termo}(', f'math.{termo}(')
+    
+    return eval(expressao)
 
-print('\033[1;33;41mPara a função, use valores parecidos com: x**2 - x - 2', end = '')
+print('Para a função, use valores parecidos com: x**2 - x - 2')
 
-fu = input('Digite a f(x) = ')
+print('\033[1m1 - Encontrar raiz!\033[m')
+print('\033[1m2 - Sair do programa!\033[m')
+
+
+
+fx = input('Digite a f(x) = ')
 a = float(input('Digite o valor do intervalo "a" no intervalo: '))
 b = float(input('Digite o valor do intervalo "b" no intervalo: '))
 precisao = float(input('Digite a precisão do algoritmo: ')) # precisão desejada para a solução
 
-tolerancia = 0.0001 
 
 amplitude = b - a
 
 x0 = (a + b)/2.0 #sequência de aproximações, divisão do intervalo em duas sessões (bisseção)
 
 cont = 0
-Ni = 100 #numero de iterações
+Ni = 100 #numero de iterações, para evitar um possível loop infinito
 
 
 print('\nIteração  |         x        |        f(x)      |     b - a')
 print('-' * 64)
 
-while (amplitude > precisao or math.fabs(funcao(x0, fu)) > tolerancia): #calculo valor absoluto da função em modulo
-    if funcao(a, fu) * funcao(x0, fu) < 0:
+while math.fabs(b - a) > precisao: #calculo valor absoluto da função em modulo
+    if funcao(a, fx) * funcao(x0, fx) < 0:
         b = x0
-    if funcao(a, fu) * funcao(x0, fu) > 0:
+    if funcao(a, fx) * funcao(x0, fx) > 0:
         a = x0
-    
+        
     amplitude = b - a
     x0 = (a + b)/2 #calculo de nova aproximação
     cont = cont + 1
     if cont >= Ni:
         break
     
-    print(f'   {cont:3d}    |   {x0:12.8f}   |   {funcao(x0, fu):12.8f}   |   {amplitude:10.8f}')
+    print(f'   {cont:3d}    |   {x0:12.8f}   |   {funcao(x0, fx):12.8f}   |   {amplitude:10.8f}')
     
     
     
 print(f'Raiz: {x0:.8f}')
 print('Iterações: ', cont)
-print(f'f({x0:.8f}) = ({funcao(x0, fu):.8f})')
+print(f'f({x0:.8f}) = ({funcao(x0, fx):.8f})')
+
+
+# não foi feito o uso do  or "math.fabs(funcao(x0, fx)) > precisao" por conta da quantidade de iterações em algumas funções
+# alcansarem valores infinitos
