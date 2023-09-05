@@ -1,5 +1,5 @@
 #########################################
-#  Algoritmo do método do Ponto Fixo    #
+#  Algoritmo do método de Newton        #
 #                                       #
 #  Projeto de Cálculo Numérico S4 BCC   #
 #                                       #
