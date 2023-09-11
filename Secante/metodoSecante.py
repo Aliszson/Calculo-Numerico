@@ -111,13 +111,13 @@ fx_entrada.grid(row=0, column=1, sticky='w')
 x0_rotulo = tk.Label(quadro, text='Valor de x0:', font=arial_black, foreground='blue')
 x0_rotulo.grid(row=1, column=0, sticky="s")
 
-x0_entrada = tk.Entry(quadro, font=arial_black, foreground='blue') # Área onde o usuário digita o paramêtro inicial 'a'
+x0_entrada = tk.Entry(quadro, font=arial_black, foreground='blue') # Área onde o usuário digita o paramêtro inicial 'x0'
 x0_entrada.grid(row=1, column=1, sticky='w')
 
 x1_rotulo = tk.Label(quadro, text='Valor de x1: ', font=arial_black, foreground='blue')
 x1_rotulo.grid(row=2, column=0, sticky="s")
 
-x1_entrada = tk.Entry(quadro, font=arial_black, foreground=  'blue') # Área onde o usuário digita o paramêtro final 'b'
+x1_entrada = tk.Entry(quadro, font=arial_black, foreground=  'blue') # Área onde o usuário digita o paramêtro final 'x1'
 x1_entrada.grid(row=2, column=1, sticky='w')
 
 precisao_rotulo = tk.Label(quadro, text="Precisão:", font=arial_black, foreground='orange')
